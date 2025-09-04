@@ -1,6 +1,6 @@
 # CS460-Fall25-ClassRepo
 ## Miscellaneous
-.NET 9.0.6 is the current "main" release.  Let's use that one.
+.NET 9.0 is the current "main" release.  Let's use that one.
 ```
 dotnet --list-sdks
 dotnet help
@@ -58,10 +58,10 @@ Sample connection strings.  NOTE: The `\\` is for when this connection string is
 ```
 # Docker (password is in single quotes in case it has special characters, would still
 # need to escape a ' as ''):
-Data Source=localhost;Initial Catalog=AuctionHouse;User Id=sa;Password='Hello123#';
+Data Source=localhost;Initial Catalog=Sample;User Id=sa;Password='Hello123#';
 
 # LocalDB
-Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=AuctionHouse;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False
+Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=Sample;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False
 
 ```
 
@@ -74,6 +74,8 @@ dotnet ef dbcontext scaffold Name=SampleConnection Microsoft.EntityFrameworkCore
 # or if you want to use data annotations in your model classes rather than defining things in the context class
 # try them one after another to see the difference in the generated classes
 dotnet ef dbcontext scaffold Name=SampleConnection Microsoft.EntityFrameworkCore.SqlServer --context SampleDbContext --context-dir Models --output-dir Models --verbose --force  --data-annotations
+
+dotnet ef DBContext scaffold "Server=(localdb)\mssqllocaldb;Database=AuctionHouse;Trusted_Connection=True;" Microsoft.EntityFrameworkCore.SqlServer --output-dir Models --context AuctionHouseDbContext --force --data-annotations
 ```
 
 ### Enable Lazy loading of related properties
@@ -93,7 +95,7 @@ This version of modifying the DbContext subclass is problematic because the next
 ```
 public static void Main(string[] args)
 {
-    // adds the following logging providers: Console, Debug, EventSource, EventLog (https://learn.microsoft.com/en-us/aspnet/core/fundamentals/logging/?view=aspnetcore-6.0)
+    // adds the following logging providers: Console, Debug, EventSource, EventLog (https://learn.microsoft.com/en-us/aspnet/core/fundamentals/logging/?view=aspnetcore-9.0)
     var builder = WebApplication.CreateBuilder(args);
 
     // Add services to the container.
@@ -106,9 +108,9 @@ public static void Main(string[] args)
 
 
 ### Use LINQPad 8 to explore your data and build Linq queries
-Download and install [LINQPad 8](https://www.linqpad.net/) (sorry, Windows only).
+Download and install [LINQPad 8](https://www.linqpad.net/) Now available for Windows and MAC OS.
 
-Make sure your project has built, then open LINQPad and click `Add connection`.  Select the radio button for "Use a typed data context from your own assembly" and choose "EntityFramework Core (3.x -> 7.x)".  Click Next.  Click Browse for the "Path to Custom Assembly" and go find your applications `.dll`  For this example it is in the bin folder of your applications source at `bin\Debug\net6.0\Sample.dll`.  After the dialog finds your DbContext class and populates the second text field, choose "Via a constructor that accepts a DbContextOptions<>" from the "How should LINQPad instantiate your DbContext?".  Click Test and hopefully it shows you that it can connect to the database through your applications code.
+Make sure your project has built, then open LINQPad and click `Add connection`.  Select the radio button for "Use a typed data context from your own assembly" and choose "EntityFramework Core (9.0)".  Click Next.  Click Browse for the "Path to Custom Assembly" and go find your applications `.dll`  For this example it is in the bin folder of your applications source at `bin\Debug\net9.0\Sample.dll`.  After the dialog finds your DbContext class and populates the second text field, choose "Via a constructor that accepts a DbContextOptions<>" from the "How should LINQPad instantiate your DbContext?".  Click Test and hopefully it shows you that it can connect to the database through your applications code.
 
 [How to use Linq in C#](https://learn.microsoft.com/en-us/dotnet/csharp/linq/)
 
@@ -128,7 +130,7 @@ Then scaffold a controller with views for a particular model
 dotnet-aspnet-codegenerator controller -name ItemController -m Show -dc AuctionHouseDbContext --relativeFolderPath Controllers --useDefaultLayout --referenceScriptLibraries
 ```
 
-Here is the documentation for this tool: [dotnet-aspnet-codegenerator](https://learn.microsoft.com/en-us/aspnet/core/fundamentals/tools/dotnet-aspnet-codegenerator?view=aspnetcore-6.0)
+Here is the documentation for this tool: [dotnet-aspnet-codegenerator](https://learn.microsoft.com/en-us/aspnet/core/fundamentals/tools/dotnet-aspnet-codegenerator?view=aspnetcore-9.0)
 
 Note, this uses the DbContext directly and so is only a guide or starting point for us since we are using Repositories.
 
@@ -136,6 +138,6 @@ For a WebAPI REST interface for CRUD operations we can change this slighly to ge
 ```
 dotnet-aspnet-codegenerator controller -name BuyerController -async -api -m Buyer -dc AuctionHouseDbContext -outDir Controllers
 ```
-See [Tutorial: Create a web API with controllers](https://learn.microsoft.com/en-us/aspnet/core/tutorials/first-web-api?view=aspnetcore-6.0&tabs=visual-studio-code) for more.
+See [Tutorial: Create a web API with controllers](https://learn.microsoft.com/en-us/aspnet/core/tutorials/first-web-api?view=aspnetcore-9.0&tabs=visual-studio-code) for more.
 
 Watch out for cycles though if you try to do this directly with your database models.  
