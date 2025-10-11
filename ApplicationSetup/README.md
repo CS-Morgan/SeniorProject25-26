@@ -75,8 +75,6 @@ dotnet ef dbcontext scaffold Name=SampleConnection Microsoft.EntityFrameworkCore
 # try them one after another to see the difference in the generated classes
 dotnet ef dbcontext scaffold Name=SampleConnection Microsoft.EntityFrameworkCore.SqlServer --context SampleDbContext --context-dir Models --output-dir Models --verbose --force  --data-annotations
 
-dotnet ef DBContext scaffold "Server=(localdb)\mssqllocaldb;Database=AuctionHouse;Trusted_Connection=True;" Microsoft.EntityFrameworkCore.SqlServer --output-dir Models --context AuctionHouseDbContext --force --data-annotations
-```
 
 ### Enable Lazy loading of related properties
 Open the DBContext subclass that was created in the last step.  In this example it is called `SampleDbContext.cs` and is located in the `Models` folder.  Find the `OnConfiguring` method and add the line to use lazy loading proxies:
