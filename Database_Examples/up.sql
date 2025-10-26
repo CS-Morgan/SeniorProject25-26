@@ -1,5 +1,5 @@
 -- If you want to create the DB from code run the next line
---CREATE DATABASE [AuctionHouse];
+CREATE DATABASE [AuctionHouse];
 
 -- And if you need to switch DB's run this
 --USE [AuctionHouse];
