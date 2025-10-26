@@ -30,6 +30,7 @@ Either manually add version information (--version) or double check that you got
 #cd into the project you want to add to, i.e. Sample/Sample (so you're right next to the .csproj file)
 dotnet list package
 dotnet add package Microsoft.EntityFrameworkCore
+dotnet add package Microsoft.EntityFrameworkCore.Tools
 dotnet add package Microsoft.EntityFrameworkCore.Design
 dotnet add package Microsoft.EntityFrameworkCore.SqlServer
 dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design
