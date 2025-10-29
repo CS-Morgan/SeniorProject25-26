@@ -23,7 +23,7 @@ public class Program
         builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
         builder.Services.AddScoped<IBuyerRepository, BuyerRepository>();
         builder.Services.AddScoped<IItemRepository, ItemRepository>();
-
+        builder.Services.AddScoped<ISellerRepository, SellerRepository>();
 
         var app = builder.Build();
 

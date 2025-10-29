@@ -23,9 +23,11 @@ public partial class Seller
 
     [Required]
     [StringLength(50)]
+    [EmailAddress]
     public string Email { get; set; }
 
     [StringLength(15)]
+    [Phone]
     public string Phone { get; set; }
 
     [Required]
