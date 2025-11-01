@@ -53,7 +53,7 @@ namespace AuctionHouse.Controllers
         // but I put it all in one as that is the "correct" behavior of a PUT request.  You don't always have to be "correct".
 
         // PUT acts as CREATE and UPDATE ALL, i.e. replace; PATCH means update some (see: https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/PUT)
-        // PUT: api/SellerApi/5
+        // PUT: api/seller/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
         [ProducesResponseType(StatusCodes.Status200OK), ProducesResponseType(StatusCodes.Status201Created), ProducesResponseType(StatusCodes.Status204NoContent)]
@@ -123,7 +123,7 @@ namespace AuctionHouse.Controllers
 
         // POSTing a Seller makes no sense, so remove it
 
-        // DELETE: api/SellerApi/5
+        // DELETE: api/seller/5
         [HttpDelete("{id}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]

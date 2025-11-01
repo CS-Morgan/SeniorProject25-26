@@ -20,3 +20,10 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+.portal-header {
+    display: inline-block;
+    border-bottom: thin solid #258cfb;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
