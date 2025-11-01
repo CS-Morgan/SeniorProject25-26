@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using AuctionHouse.Models;
 using AuctionHouse.DAL.Abstract;
+using System.Diagnostics;
 
 namespace AuctionHouse.Controllers
 {
